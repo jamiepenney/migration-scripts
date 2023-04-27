@@ -47,7 +47,7 @@ async function migrateAdminPermissions() {
     const items = await dbV3(resolveSourceTableName(source))
       .limit(BATCH_SIZE)
       .offset(page * BATCH_SIZE);
-    const migratedItems = migrateItems(items, ({ role, ...item }) => ({
+    const migratedItems = migrateItems(items, ({ role, fields, ...item }) => ({
       ...item,
       action: migrateUids(item.action),
       subject: migrateSubject(item.subject),

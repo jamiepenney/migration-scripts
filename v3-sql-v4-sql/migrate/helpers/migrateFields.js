@@ -1,7 +1,7 @@
 const { snakeCase } = require('lodash/fp');
 
 function fixColumnNameInLocalizationsTable(fieldName) {
-  if (fieldName.includes('-') && !fieldName.includes('related_')) {
+  if (fieldName.includes('-') && !fieldName.includes('related_') && (!fieldName.includes('-collection_id') || fieldName === 'faq-collection_id')) {
     return 'inv_' + snakeCase(fieldName);
   }
   return snakeCase(fieldName).replace(/^related_(.*)?$/, 'inv_$1');

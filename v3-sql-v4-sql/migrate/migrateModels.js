@@ -18,8 +18,11 @@ async function migrateModels(tables) {
   );
 
   for (const modelDefEntry of modelsDefs) {
+    
     const modelDef = JSON.parse(modelDefEntry.value);
 
+    console.log(`Migrating ${modelDef.collectionName}`);
+    
     const omitAttributes = [];
     for (const [key, value] of Object.entries(modelDef.attributes)) {
       if (skipAttributes.includes(key)) {
